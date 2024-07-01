@@ -13,6 +13,7 @@ if table_exists:
         result = input("Are you sure? This WILL result in a loss of data (yes/N): ")
         if result.lower() == "yes":
             cursor.execute("DROP TABLE videos")
+            cursor.execute("DROP TABLE comments")
             print("Table dropped successfully")
             result = input("Would you like to recreate the table? (Y/n): ")
             if result == "n":
@@ -28,7 +29,7 @@ if table_exists:
         exit()
 
 
-TABLE = """ CREATE TABLE videos (
+VIDEOS = """ CREATE TABLE videos (
     video_id CHAR(11),
     channel_id CHAR(24),
     description text,
@@ -40,7 +41,20 @@ TABLE = """ CREATE TABLE videos (
     PRIMARY KEY (video_id, recorded_at)
 )"""
 
-cursor.execute(TABLE)
+COMMENTS = """ CREATE TABLE comments (
+    comment_id CHAR(26),
+    video_id CHAR(11),
+    author_id CHAR(24),
+    text text,
+    published_at timestamp,
+    recorded_at timestamp,
+    positive_test boolean,
+    false_positive boolean,
+    PRIMARY KEY (comment_id, video_id)
+    )"""
+
+cursor.execute(VIDEOS)
+cursor.execute(COMMENTS)
 
 print("Table created successfully")
 
