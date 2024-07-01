@@ -63,6 +63,7 @@ Process Data
     
     
 def process_data_advanced():
+    """Manages the advanced data processing."""
     result = input(f"""
 Advanced Data Processing
     1. Process comments (only)
@@ -109,6 +110,7 @@ Create Database
 
 
 def create_db_manual():
+    """Manages the manual database creation."""
     while(True):
         result = input(f"""
 Manual Database Creation

@@ -10,6 +10,7 @@ with open(safe_file_path, "r") as f:
 
 
 def get_rows():
+    """Gets all rows from the videos table."""
     connection = sqlite3.connect("youtube.db")
     cursor = connection.cursor()
     cursor.execute("SELECT video_id,updated_at, description FROM videos")
@@ -19,6 +20,7 @@ def get_rows():
     return result
 
 def process_row(row):
+    """Processes a row for links."""
     _, _, description = row
     if description == "":
         return 0
@@ -30,6 +32,7 @@ def process_row(row):
     return links
 
 def process_links(links,row):
+    """Processes links for safe domains."""
     video_id, updated_at, _ = row
     
     bad_links = []
@@ -50,6 +53,7 @@ def process_links(links,row):
     return bad_links, len(bad_links)
             
 def create_link(row, link):
+    """Creates a link occurrence for a video."""
     video_id, updated_at, _ = row
     connection = sqlite3.connect("youtube.db")
     cursor = connection.cursor()
@@ -77,6 +81,7 @@ def create_link(row, link):
             
             
 def process_videos():
+    """Processes videos for links."""
     rows = get_rows()
     for row in rows:
         links = process_row(row)
@@ -89,6 +94,7 @@ def process_videos():
             create_link(row, link)
 
 def get_comments():
+    """gets the comments from the database."""
     connection = sqlite3.connect("youtube.db")
     cursor = connection.cursor()
     cursor.execute("SELECT comment_id, updated_at, text FROM comments")
@@ -100,6 +106,7 @@ def get_comments():
     return result, extra
 
 def create_link_comment(row, link, video_id):
+    """Creates a link occurrence for a comment."""
     comment_id, updated_at, _ = row
     connection = sqlite3.connect("youtube.db")
     cursor = connection.cursor()
@@ -122,6 +129,7 @@ def create_link_comment(row, link, video_id):
     connection.close()
     
 def process_comments():
+    """Processes comments for links."""
     rows, extra = get_comments()
     for row in rows:
         links = process_row(row)
@@ -134,6 +142,7 @@ def process_comments():
             create_link_comment(row, link, str(extra[i][0]))
         
 def process_positive_test_video():
+    """Tests videos for positive tests."""
     connection = sqlite3.connect("youtube.db")
     cursor = connection.cursor()
     
@@ -145,6 +154,7 @@ def process_positive_test_video():
     connection.commit()
 
 def process_positive_test_comment():
+    """Tests comments for positive tests."""
     connection = sqlite3.connect("youtube.db")
     cursor = connection.cursor()
     
@@ -156,6 +166,7 @@ def process_positive_test_comment():
     connection.commit()
         
 def process_link_occurrences():
+    """calculates the number of occurrences for each link."""
     connection = sqlite3.connect("youtube.db")
     cursor = connection.cursor()
     
@@ -170,6 +181,7 @@ def process_link_occurrences():
     connection.commit()
         
 def process_occurrence_times():
+    """processes the oldest and newest occurrence of a link (by upload date)."""
     connection = sqlite3.connect("youtube.db")
     cursor = connection.cursor()
     
@@ -203,6 +215,7 @@ def process_occurrence_times():
 
 
 def all():
+    """Runs all processing functions."""
     # # create links and tables
     process_videos()
     process_comments()
@@ -216,10 +229,12 @@ def all():
     process_occurrence_times()
 
 def process_all():
+    """Processes both videos and comments."""
     process_videos()
     process_comments()
     
 def positive_test():
+    """tests both videos and comments."""
     process_positive_test_video()
     process_positive_test_comment()
     

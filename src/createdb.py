@@ -1,6 +1,7 @@
 import sqlite3
 
 def are_you_sure(table_name):
+    """Asks the user if they are sure they want to drop the table."""
     result = input(f"Table {table_name} already exists. Would you like to drop it? (yes/N): ")
     if result.lower() == "yes":
         result = input(f"Are you sure? This WILL result in a loss of data type {table_name} to continue: ")
@@ -52,6 +53,7 @@ LINK_OCCURRENCE = """ CREATE TABLE link_occurrence (
     )"""
 
 def create_videos():
+    """Creates the videos table."""
     connection = sqlite3.connect("youtube.db")
     cursor = connection.cursor()
     try:
@@ -64,6 +66,7 @@ def create_videos():
     connection.close()
 
 def create_comments():
+    """creates the comments table."""
     connection = sqlite3.connect("youtube.db")
     cursor = connection.cursor()
     try:
@@ -76,6 +79,7 @@ def create_comments():
     connection.close()
 
 def create_links():
+    """Creates the links table."""
     connection = sqlite3.connect("youtube.db")
     cursor = connection.cursor()
     try:
@@ -88,6 +92,7 @@ def create_links():
     connection.close()
 
 def create_link_occurrence():
+    """Creates the link_occurrence table."""
     connection = sqlite3.connect("youtube.db")
     cursor = connection.cursor()
     try:
@@ -100,10 +105,12 @@ def create_link_occurrence():
     connection.close()
 
 def auto_links():
+    """Creates the links table and the link_occurrence table."""
     create_links()
     create_link_occurrence()
 
 def create_automatic():
+    """Creates all tables automatically."""
     create_videos()
     create_comments()
     create_links()
