@@ -215,6 +215,14 @@ def all():
     process_link_occurrences()
     process_occurrence_times()
 
+def process_all():
+    process_videos()
+    process_comments()
+    
+def positive_test():
+    process_positive_test_video()
+    process_positive_test_comment()
+    
 
 if __name__ == "__main__":
     print("do not run this file directly, use run.py instead")

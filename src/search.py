@@ -100,6 +100,5 @@ def insert_into_sql(id,comment_df, current_time):
     connection.close()
         
 
-if __name__ == "__main__":
-    keywords = ["fortnite skin swapper","free robux","fortnite hacks", "minecraft hacks", "roblox hacks" ]
-    search_youtube(keywords)
+if __name__ == "__main__": 
+    print("This should not be run directly. Please run run.py instead.")
