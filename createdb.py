@@ -14,6 +14,8 @@ if table_exists:
         if result.lower() == "yes":
             cursor.execute("DROP TABLE videos")
             cursor.execute("DROP TABLE comments")
+            cursor.execute("DROP TABLE links")
+            cursor.execute("DROP TABLE link_occurrence")
             print("Table dropped successfully")
             result = input("Would you like to recreate the table? (Y/n): ")
             if result == "n":
@@ -34,11 +36,11 @@ VIDEOS = """ CREATE TABLE videos (
     channel_id CHAR(24),
     description text,
     viewcount integer,
+    published_at timestamp,
     updated_at timestamp,
-    recorded_at timestamp,
     positive_test boolean,
     false_positive boolean,
-    PRIMARY KEY (video_id, recorded_at)
+    PRIMARY KEY (video_id, updated_at)
 )"""
 
 COMMENTS = """ CREATE TABLE comments (
@@ -47,14 +49,34 @@ COMMENTS = """ CREATE TABLE comments (
     author_id CHAR(24),
     text text,
     published_at timestamp,
-    recorded_at timestamp,
+    updated_at timestamp,
     positive_test boolean,
     false_positive boolean,
-    PRIMARY KEY (comment_id, video_id)
+    PRIMARY KEY (comment_id, updated_at)
+    )"""
+
+LINKS = """ CREATE TABLE links (
+    link_id CHAR(64),
+    url text,
+    occurrences integer,
+    newest_occurrence timestamp,
+    oldest_occurrence timestamp,
+    PRIMARY KEY (link_id)
+    )"""
+
+LINK_OCCURRENCE = """ CREATE TABLE link_occurrence (
+    link_id CHAR(64),
+    video_id CHAR(11),
+    comment_id CHAR(26),
+    
+    PRIMARY KEY (link_id, video_id, comment_id)
     )"""
 
 cursor.execute(VIDEOS)
 cursor.execute(COMMENTS)
+
+cursor.execute(LINKS)
+cursor.execute(LINK_OCCURRENCE)
 
 print("Table created successfully")
 
