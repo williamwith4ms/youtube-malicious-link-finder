@@ -2,8 +2,9 @@ import sqlite3
 import re
 from hashlib import sha256
 # load preloaded list of safe domains
+safe_file_path = "data/safe_domains.txt"
 SAFE_DOMAINS = []
-with open("safe_domains.txt", "r") as f:
+with open(safe_file_path, "r") as f:
     for line in f:
         SAFE_DOMAINS.append(line.strip())
 
@@ -201,7 +202,7 @@ def process_occurrence_times():
     connection.close()
 
 
-def main():
+def all():
     # # create links and tables
     process_videos()
     process_comments()
@@ -214,5 +215,14 @@ def main():
     process_link_occurrences()
     process_occurrence_times()
 
+def process_all():
+    process_videos()
+    process_comments()
+    
+def positive_test():
+    process_positive_test_video()
+    process_positive_test_comment()
+    
+
 if __name__ == "__main__":
-    main()
+    print("do not run this file directly, use run.py instead")
