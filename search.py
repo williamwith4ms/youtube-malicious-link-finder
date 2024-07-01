@@ -6,7 +6,7 @@ import pandas as pd
 import time
 from googleapiclient.discovery import build
 
-keywords = ["fortnite skin swapper"]
+
 API_KEY = os.environ.get("YOUTUBE_API_KEY")
 
 SERVICE_NAME="youtube"
@@ -55,19 +55,20 @@ def process_search(search):
 
 def search_youtube(queries):
     #run search with all queries
-    print("Requesting search for queries: ", queries)
-    if '--test' in sys.argv:
-        with open("test_data.json" ,"r", encoding="utf-8") as f:
-            search = json.load(f)
-    else:  
-        youtube = build(SERVICE_NAME, developerKey=API_KEY, version=API_VERSION) 
-        search = youtube.search().list(
-            q=queries,
-            part="snippet",
-            maxResults=50
-        ).execute()
-    
-    process_search(search)
+    for query in queries:
+        print("Requesting search for queries: ", query)
+        if '--test' in sys.argv:
+            with open("test_data.json" ,"r", encoding="utf-8") as f:
+                search = json.load(f)
+        else:  
+            youtube = build(SERVICE_NAME, developerKey=API_KEY, version=API_VERSION) 
+            search = youtube.search().list(
+                q=query,
+                part="snippet",
+                maxResults=50
+            ).execute()
+        
+        process_search(search)
 
 def get_comments(df, current_time):
     ids = df['id.videoId'].to_list()        
@@ -100,4 +101,5 @@ def insert_into_sql(id,comment_df, current_time):
         
 
 if __name__ == "__main__":
+    keywords = ["fortnite skin swapper","free robux"]
     search_youtube(keywords)
