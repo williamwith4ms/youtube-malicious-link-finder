@@ -202,7 +202,7 @@ def process_occurrence_times():
     connection.close()
 
 
-def main():
+def all():
     # # create links and tables
     process_videos()
     process_comments()
@@ -215,5 +215,6 @@ def main():
     process_link_occurrences()
     process_occurrence_times()
 
+
 if __name__ == "__main__":
-    main()
+    print("do not run this file directly, use run.py instead")
