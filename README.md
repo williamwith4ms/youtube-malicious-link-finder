@@ -37,9 +37,9 @@ run run.py and select `4. Create Database` then `1. Automated` to initialize the
 ## Current planned features
 
 - [x] inbuilt database querying
-- [ ] make usage guide
-- [ ] easy way to add more links to the safe list
+- [x] make usage guide
 - [ ] improved processing
+- [ ] easy way to add more links to the safe list
 - [ ] lower false positive rate
 
 these features are things i intend on adding, but i make no promises.
