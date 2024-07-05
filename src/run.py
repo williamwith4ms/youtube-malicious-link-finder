@@ -154,7 +154,6 @@ def query_data_manager():
     6. Get all positive tests
     7. Get oldest positive test
     8. Get newest positive test
-    9. Get false positive
     c. Custom query
     b. Back
     q. Exit
@@ -176,8 +175,6 @@ def query_data_manager():
                 print(query.get_oldest_positive_test())
             case "8":
                 print(query.get_newest_positive_test())
-            case "9":
-                print(query.get_false_positive())
             case "c":
                 custom_query()
             case "b":
@@ -187,6 +184,10 @@ def query_data_manager():
             case _:
                 print("Invalid option")
 
+def custom_query():
+    request = input("Enter query: ")
+    print(query.get(request))
+
 def main():
     """Main function that manages the main options."""
     while(True):
@@ -194,7 +195,7 @@ def main():
         result = input(f"""Youtube Malicious Link Finder
     1. Search Youtube
     2. Process Data
-    3. Query Data (not implemented)
+    3. Query Data
     4. Create Database
     q. Exit
 """)
@@ -204,7 +205,7 @@ def main():
         elif result == "2":
             process_data_manager()
         elif result == "3":
-            print("Not implemented")
+            query_data_manager()
         elif result == "4":
             create_db_manager()
         elif result == "q":
