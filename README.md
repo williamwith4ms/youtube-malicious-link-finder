@@ -4,6 +4,8 @@
     <a href="" target="_blank"> 
         <img alt="license" src="https://img.shields.io/github/license/williamwith4ms/youtube-malicious-link-finder" />
     </a>
+    <a href="" target="_blank">
+        <img alt="release" src="https://img.shields.io/github/v/release/williamwith4ms/youtube-malicious-link-finder?include_prereleases">
 </p>
 
 *** 
