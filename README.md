@@ -9,7 +9,7 @@
 </p>
 
 *** 
-A tool for locating malicious links
+A tool for locating malicious links on youtube.com
 
 ## Features
 
@@ -18,7 +18,7 @@ A tool for locating malicious links
 - views both video descriptions and comments for links
 - can ignore links that are deemed safe 
 
-and more if i feel like adding it
+And more if I feel like adding it!
 
 ## Quickstart guide 
 
@@ -42,6 +42,23 @@ echo $YOUTUBE_API_KEY
 
 run run.py and select `4. Create Database` then `1. Automated` to initialize the database
 
+## Cron jobs
+
+The file src/cron.py is a slimed version of run.py that contains only what is needed to run and process a search. At this point in time changing the options requires editing the file manually, However it is quite clear what needs to be changed.
+
+After changing the options run the crontab command
+
+In this example the script will run once every hour 
+```
+0 * * * * /path/to/python /path/to/cron.py
+```
+
+In this example the script will run once every day at 1PM 
+```
+0 13 * * * /path/to/python /path/to/cron.py
+```
+
+
 ## Current planned features / Todo
 
 - [x] inbuilt database querying
@@ -52,4 +69,4 @@ run run.py and select `4. Create Database` then `1. Automated` to initialize the
 - [ ] lower false positive rate
 - [ ] AUR package
 
-these features are things i intend on adding, but i make no promises.
+These features are things I intend on adding, but I make no promises.
