@@ -71,7 +71,11 @@ def get_most_common_link():
 
 def get_all_positive_test():
     query = """
-    SELECT video_id, positive_test
+    SELECT video_id, comment_id, positive_test
+    FROM comments
+    WHERE positive_test = 1
+    UNION
+    SELECT video_id, NULL AS comment_id, positive_test
     FROM videos
     WHERE positive_test = 1
     """
@@ -80,7 +84,11 @@ def get_all_positive_test():
 
 def get_oldest_positive_test():
     query = """
-    SELECT video_id, published_at
+    SELECT video_id, comment_id, published_at
+    FROM comments
+    WHERE positive_test = 1
+    UNION
+    SELECT video_id, NULL AS comment_id, published_at
     FROM videos
     WHERE positive_test = 1
     ORDER BY published_at ASC
@@ -90,7 +98,11 @@ def get_oldest_positive_test():
 
 def get_newest_positive_test():
     query = """
-    SELECT video_id, published_at
+    SELECT video_id, comment_id, published_at
+    FROM comments
+    WHERE positive_test = 1
+    UNION
+    SELECT video_id, NULL AS comment_id, published_at
     FROM videos
     WHERE positive_test = 1
     ORDER BY published_at DESC
@@ -100,7 +112,11 @@ def get_newest_positive_test():
 
 def get_false_positive():
     query = """
-    SELECT video_id, false_positive
+    SELECT video_id, comment_id, positive_test
+    FROM comments
+    WHERE false_positive = 1
+    UNION
+    SELECT video_id, NULL AS comment_id, positive_test
     FROM videos
     WHERE false_positive = 1
     """
