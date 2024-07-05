@@ -23,6 +23,11 @@ def format_query(result, query):
     return df
 
 
+def format_hard_coded_col_names(result, columns):
+    df = pd.DataFrame(result)
+    df.columns = columns
+    return df
+
 def format_no_col_names(result):
     df = pd.DataFrame(result)
     return df
@@ -36,7 +41,7 @@ def get_videos():
     query = """
     SELECT * FROM videos
     """
-    return format_no_col_names(run_query(query))
+    return format_hard_coded_col_names(run_query(query), ["video_id", "channel_id", "description", "viewcount", "published_at", "last_updated", "positive_test", "false_positive"])
 
 
 def get_comments():
@@ -44,15 +49,14 @@ def get_comments():
     SELECT *
     FROM comments
     """
-    return format_no_col_names(run_query(query))
-
+    return format_hard_coded_col_names(run_query(query), ["video_id", "comment_id", "author_id", "text", "published_at", "updated_at", "positive_test", "false_positive"])
 
 def get_links():
     query = """
     SELECT *
     FROM links
     """
-    return format_no_col_names(run_query(query))
+    return format_hard_coded_col_names(run_query(query), ["link_id", "url", "occurrences", "positive_test", "false_positive"])
 
 
 def get_most_viewed():
