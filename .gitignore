@@ -7,3 +7,6 @@ __pycache__/
 run.spec
 build/
 dist/
+
+PKGBUILD
+DEBIAN/
