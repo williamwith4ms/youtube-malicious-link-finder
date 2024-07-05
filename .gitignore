@@ -3,3 +3,4 @@ youtube.db-journal
 test_data.json
 
 .vscode/
+__pycache__/
