@@ -136,7 +136,7 @@ def get_false_positive():
 ##################
 
 def get(query):
-    return run_query(query)
+    return format_no_col_names(run_query(query))
 
 if __name__ == "__main__":
     print("dont run this file directly, use run.py instead")
