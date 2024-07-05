@@ -42,12 +42,14 @@ echo $YOUTUBE_API_KEY
 
 run run.py and select `4. Create Database` then `1. Automated` to initialize the database
 
-## Current planned features
+## Current planned features / Todo
 
 - [x] inbuilt database querying
 - [x] make usage guide
 - [ ] improved processing
 - [ ] easy way to add more links to the safe list
+- [ ] inbuilt way to set up API key 
 - [ ] lower false positive rate
+- [ ] AUR package
 
 these features are things i intend on adding, but i make no promises.
