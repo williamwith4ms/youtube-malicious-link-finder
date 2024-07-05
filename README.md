@@ -12,15 +12,34 @@ A tool for locating malicious links
 
 and more if i feel like adding it
 
+## Quickstart guide 
+
+First you need to get an api key for youtube. See https://developers.google.com/youtube/v3/getting-started
+
+Then set the api key as an environment variable
+
+Bash/zsh
+```
+export YOUTUBE_API_KEY='YOUR KEY HERE'
+```
+Fish
+```
+set -x YOUTUBE_API_KEY 'YOUR KEY HERE'
+```
+
+you should see your key printed if you run
+```
+echo $YOUTUBE_API_KEY
+```
+
+run run.py and select `4. Create Database` then `1. Automated` to initialize the database
+
 ## Current planned features
 
+- [x] inbuilt database querying
 - [ ] make usage guide
 - [ ] easy way to add more links to the safe list
-- [ ] inbuilt database querying
 - [ ] improved processing
 - [ ] lower false positive rate
 
 these features are things i intend on adding, but i make no promises.
-
-## Usage guide 
-todo: this
