@@ -1,5 +1,11 @@
 # youtube-malicious-link-finder
 
+<p align="center">
+    <a href="" target="_blank"> 
+        <img alt="license" src="https://img.shields.io/github/license/williamwith4ms/youtube-malicious-link-finder" />
+    </a>
+</p>
+
 *** 
 A tool for locating malicious links
 
