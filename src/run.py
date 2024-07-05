@@ -1,7 +1,7 @@
 from search import search_youtube
 import createdb
 import process
-
+import query
 
 def search_youtube_manager():
     """Manages the search youtube function."""
@@ -63,6 +63,7 @@ Process Data
     
     
 def process_data_advanced():
+    """Manages the advanced data processing."""
     result = input(f"""
 Advanced Data Processing
     1. Process comments (only)
@@ -109,6 +110,7 @@ Create Database
 
 
 def create_db_manual():
+    """Manages the manual database creation."""
     while(True):
         result = input(f"""
 Manual Database Creation
@@ -140,6 +142,52 @@ Manual Database Creation
             exit()
     
 
+def query_data_manager():
+    """Manages the query data function."""
+    while(True):
+        result = input(f"""
+    1. Get videos
+    2. Get comments
+    3. Get links
+    4. Get most viewed
+    5. Get most common link
+    6. Get all positive tests
+    7. Get oldest positive test
+    8. Get newest positive test
+    c. Custom query
+    b. Back
+    q. Exit
+""")
+        match result:
+            case "1":
+                print(query.get_videos())
+            case "2":
+                print(query.get_comments())
+            case "3":
+                print(query.get_links())
+            case "4": 
+                print(query.get_most_viewed())
+            case "5":
+                print(query.get_most_common_link())
+            case "6":
+                print(query.get_all_positive_test())
+            case "7":
+                print(query.get_oldest_positive_test())
+            case "8":
+                print(query.get_newest_positive_test())
+            case "c":
+                custom_query()
+            case "b":
+                break
+            case "q":
+                exit()
+            case _:
+                print("Invalid option")
+
+def custom_query():
+    request = input("Enter query: ")
+    print(query.get(request))
+
 def main():
     """Main function that manages the main options."""
     while(True):
@@ -147,7 +195,7 @@ def main():
         result = input(f"""Youtube Malicious Link Finder
     1. Search Youtube
     2. Process Data
-    3. Query Data (not implemented)
+    3. Query Data
     4. Create Database
     q. Exit
 """)
@@ -157,7 +205,7 @@ def main():
         elif result == "2":
             process_data_manager()
         elif result == "3":
-            print("Not implemented")
+            query_data_manager()
         elif result == "4":
             create_db_manager()
         elif result == "q":

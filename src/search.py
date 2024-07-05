@@ -13,6 +13,7 @@ SERVICE_NAME="youtube"
 API_VERSION="v3"
 
 def df_to_sql(df):
+    """Inserts the data into the database."""
     connection = sqlite3.connect("youtube.db")
     cursor = connection.cursor()
     current_time = time.strftime('%Y-%m-%dT%H:%M:%SZ')
@@ -26,6 +27,7 @@ def df_to_sql(df):
     get_comments(df, current_time)
 
 def get_additional_data(row):
+    """Gets additional data for the video. eg. description, view count."""
     id = row['id.videoId']
     youtube = build(SERVICE_NAME, developerKey=API_KEY, version=API_VERSION)
     
@@ -42,6 +44,7 @@ def get_additional_data(row):
     return row
 
 def process_search(search):
+    """Processes the search results and inserts the data into the database."""
     items = search['items']
     df = pd.json_normalize(items)
     channels = set(df['snippet.channelId'].to_list())
@@ -54,6 +57,7 @@ def process_search(search):
     return df
 
 def search_youtube(queries):
+    """Searches youtube for the queries."""
     #run search with all queries
     for query in queries:
         print("Requesting search for queries: ", query)
@@ -71,6 +75,7 @@ def search_youtube(queries):
         process_search(search)
 
 def get_comments(df, current_time):
+    """Gets the comments for the videos."""
     ids = df['id.videoId'].to_list()        
     
     for id in ids:
@@ -91,6 +96,7 @@ def get_comments(df, current_time):
             continue
 
 def insert_into_sql(id,comment_df, current_time):
+    """Inserts the comments into the database."""
     connection = sqlite3.connect("youtube.db")
     cursor = connection.cursor()
     
