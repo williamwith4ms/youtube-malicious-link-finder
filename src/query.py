@@ -22,6 +22,11 @@ def format_query(result, query):
     df.columns = columns
     return df
 
+
+def format_no_col_names(result):
+    df = pd.DataFrame(result)
+    return df
+
 ####################
 # Pre-made queries #
 ####################
@@ -29,10 +34,9 @@ def format_query(result, query):
 
 def get_videos():
     query = """
-    SELECT *
-    FROM videos
+    SELECT * FROM videos
     """
-    return format_query(run_query(query), query)
+    return format_no_col_names(run_query(query))
 
 
 def get_comments():
@@ -40,7 +44,7 @@ def get_comments():
     SELECT *
     FROM comments
     """
-    return format_query(run_query(query), query)
+    return format_no_col_names(run_query(query))
 
 
 def get_links():
@@ -48,7 +52,7 @@ def get_links():
     SELECT *
     FROM links
     """
-    return format_query(run_query(query), query)
+    return format_no_col_names(run_query(query))
 
 
 def get_most_viewed():
