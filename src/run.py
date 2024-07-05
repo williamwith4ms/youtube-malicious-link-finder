@@ -1,7 +1,7 @@
 from search import search_youtube
 import createdb
 import process
-
+import query
 
 def search_youtube_manager():
     """Manages the search youtube function."""
@@ -141,6 +141,51 @@ Manual Database Creation
         elif result == "q":
             exit()
     
+
+def query_data_manager():
+    """Manages the query data function."""
+    while(True):
+        result = input(f"""
+    1. Get videos
+    2. Get comments
+    3. Get links
+    4. Get most viewed
+    5. Get most common link
+    6. Get all positive tests
+    7. Get oldest positive test
+    8. Get newest positive test
+    9. Get false positive
+    c. Custom query
+    b. Back
+    q. Exit
+""")
+        match result:
+            case "1":
+                print(query.get_videos())
+            case "2":
+                print(query.get_comments())
+            case "3":
+                print(query.get_links())
+            case "4": 
+                print(query.get_most_viewed())
+            case "5":
+                print(query.get_most_common_link())
+            case "6":
+                print(query.get_all_positive_test())
+            case "7":
+                print(query.get_oldest_positive_test())
+            case "8":
+                print(query.get_newest_positive_test())
+            case "9":
+                print(query.get_false_positive())
+            case "c":
+                custom_query()
+            case "b":
+                break
+            case "q":
+                exit()
+            case _:
+                print("Invalid option")
 
 def main():
     """Main function that manages the main options."""
