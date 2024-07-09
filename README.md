@@ -29,7 +29,7 @@ Then install the requirements
 pip install -r requirements.txt
 ```
 
-Them you need to get an api key for youtube. See https://developers.google.com/youtube/v3/getting-started
+Then you need to get an api key for youtube. See https://developers.google.com/youtube/v3/getting-started
 
 Then set the api key as an environment variable
 
