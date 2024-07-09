@@ -4,3 +4,9 @@ test_data.json
 
 .vscode/
 __pycache__/
+run.spec
+build/
+dist/
+
+PKGBUILD
+DEBIAN/
