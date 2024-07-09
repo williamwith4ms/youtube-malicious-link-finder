@@ -22,7 +22,14 @@ And more if I feel like adding it!
 
 ## Quickstart guide 
 
-First you need to get an api key for youtube. See https://developers.google.com/youtube/v3/getting-started
+Ensure you have python and pip installed, on linux use the package manager and on windows. See https://www.python.org/downloads/
+
+Then install the requirements 
+```
+pip install -r requirements.txt
+```
+
+Them you need to get an api key for youtube. See https://developers.google.com/youtube/v3/getting-started
 
 Then set the api key as an environment variable
 
