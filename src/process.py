@@ -19,6 +19,7 @@ def get_rows():
     connection.close()
     return result
 
+
 def process_row(row):
     """Processes a row for links."""
     _, _, description = row
@@ -30,6 +31,7 @@ def process_row(row):
     if len(links) == 0:
         return 0
     return links
+
 
 def process_links(links,row):
     """Processes links for safe domains."""
@@ -51,7 +53,8 @@ def process_links(links,row):
     
     
     return bad_links, len(bad_links)
-            
+
+        
 def create_link(row, link):
     """Creates a link occurrence for a video."""
     video_id, updated_at, _ = row
@@ -77,9 +80,7 @@ def create_link(row, link):
     connection.commit()
     connection.close()
     
-        
-            
-            
+
 def process_videos():
     """Processes videos for links."""
     rows = get_rows()
@@ -92,6 +93,7 @@ def process_videos():
             continue
         for link in links:
             create_link(row, link)
+
 
 def get_comments():
     """gets the comments from the database."""
