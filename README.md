@@ -8,6 +8,8 @@
         <img alt="release" src="https://img.shields.io/github/v/release/williamwith4ms/youtube-malicious-link-finder?include_prereleases">
 </p>
 
+!! Im wont be able to work on this for around a month so don't expect any updates soon !!
+
 *** 
 A tool for locating malicious links on youtube.com
 
